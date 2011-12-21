@@ -50,7 +50,7 @@ SEP :=;
 PROJDIR:=.
 endif
 
-# Where to look for source files. 
+# Where to look for source files.
 SRCPATH := "$(SRCDIR)"
 
 LIBS := $(wildcard $(PROJDIR)/external_libs/*.jar)
@@ -82,10 +82,10 @@ CLASSES := $(CLASSES:.java=.class)
 
 empty=
 
-# Check if the class list is non-empty, if not compile the classes we need. 
-# If we get an error we remove all classes that should have been generated. 
+# Check if the class list is non-empty, if not compile the classes we need.
+# If we get an error we remove all classes that should have been generated.
 # We want to use -f since we ignore non-existing files, that also mean that
-# we have to make sure that the compile fails => false 
+# we have to make sure that the compile fails => false
 COND_COMPILE=\
 if [ -s .classes_to_compile ]; \
 then \
@@ -149,11 +149,11 @@ packages.touch:
 .packagelist:
 	@touch .packagelist
 
-cond_compile: 
-	@echo compiling classes: 
+cond_compile:
+	@echo compiling classes:
 	$(COND_COMPILE)
 
-%.jar : 
+%.jar :
 	@$(COND_COMPILE)
 	@echo building $@
 	@$(JAR) -cmf Manifest.mf $@ -C $(CLASSDIR) $(JARPACKAGEBASE)
@@ -179,10 +179,10 @@ junit: nosource
 
 else
 
-classfile: 
+classfile:
 	@echo -n > .classes_to_compile
 
-classdir: 
+classdir:
 	@if [ ! -d $(CLASSDIR) ]; then  mkdir -p $(CLASSDIR); fi
 
 code:	classfile classdir $(CLASSES)

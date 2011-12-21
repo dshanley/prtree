@@ -20,7 +20,7 @@ class NodeUsage<T> {
     public void use () {
 	if (usage >= 0)
 	    usage = -usage;
-	else 
+	else
 	    throw new RuntimeException ("using already used node");
     }
 

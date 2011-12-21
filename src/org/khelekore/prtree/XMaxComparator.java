@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 class XMaxComparator<T> implements Comparator<T> {
     private MBRConverter<T> converter;
-    
+
     public XMaxComparator (MBRConverter<T> converter) {
 	this.converter = converter;
     }

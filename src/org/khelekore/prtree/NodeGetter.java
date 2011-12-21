@@ -6,7 +6,7 @@ import java.util.List;
  * @param <N> the type of the node
  */
 interface NodeGetter<N> {
-    /** Get the next node. 
+    /** Get the next node.
      * @param maxObject use at most this many objects
      */
     N getNextNode (int maxObjects);

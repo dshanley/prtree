@@ -14,7 +14,7 @@ class MinMaxNodeGetter<T, N> implements NodeGetter<N> {
     private final NodeFactory<N> factory;
     private final TakeCounter takeCounter;
     private final int id;
-    
+
     private int minPos = 0;
     private int maxPos = 0;
     private int takenNodes = 0;
@@ -50,9 +50,9 @@ class MinMaxNodeGetter<T, N> implements NodeGetter<N> {
 	this.maxPos = maxPos;
     }
 
-    public MinMaxNodeGetter<T, N> getCopyFor (int newId, int size, 
+    public MinMaxNodeGetter<T, N> getCopyFor (int newId, int size,
 					      TakeCounter takeCounter) {
-	return new MinMaxNodeGetter<T, N> (min, max, factory, takeCounter, 
+	return new MinMaxNodeGetter<T, N> (min, max, factory, takeCounter,
 					   newId, minPos, maxPos);
     }
 
@@ -123,7 +123,7 @@ class MinMaxNodeGetter<T, N> implements NodeGetter<N> {
 
 	TakeCounter tcLow = new TakeCounter (lowSize);
 	MinMaxNodeGetter<T, N> lowPart =
-	    new MinMaxNodeGetter<T, N> (min, max, factory, tcLow, 
+	    new MinMaxNodeGetter<T, N> (min, max, factory, tcLow,
 					lowId, minPosSave, maxPos);
 	minPosSave = minPos;
 
@@ -132,7 +132,7 @@ class MinMaxNodeGetter<T, N> implements NodeGetter<N> {
 	    markForId (highId);
 	TakeCounter tcHigh = new TakeCounter (highSize);
 	MinMaxNodeGetter<T, N> highPart =
-	    new MinMaxNodeGetter<T, N> (min, max, factory, tcHigh, 
+	    new MinMaxNodeGetter<T, N> (min, max, factory, tcHigh,
 					highId, minPosSave, maxPos);
 	List<MinMaxNodeGetter<T, N>> ret =
 	    new ArrayList<MinMaxNodeGetter<T, N>> (2);

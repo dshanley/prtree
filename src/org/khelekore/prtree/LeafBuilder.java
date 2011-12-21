@@ -57,7 +57,7 @@ class LeafBuilder {
 	    }
 	}
     }
-    
+
     private <T, N> MinMaxNodeGetter<T, N> getMM (List<NodeUsage<T>> nodes,
 						 NodeFactory<N> nf,
 						 Comparator<T> min,

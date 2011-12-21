@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 class XMinComparator<T> implements Comparator<T> {
     private MBRConverter<T> converter;
-    
+
     public XMinComparator (MBRConverter<T> converter) {
 	this.converter = converter;
     }
