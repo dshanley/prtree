@@ -8,7 +8,7 @@ class XMaxNodeComparator<T> implements Comparator<Node<T>> {
     public XMaxNodeComparator (MBRConverter<T> converter) {
 	this.converter = converter;
     }
-    
+
     public int compare (Node<T> n1, Node<T> n2) {
 	double d1 = n1.getMBR (converter).getMaxX ();
 	double d2 = n2.getMBR (converter).getMaxX ();

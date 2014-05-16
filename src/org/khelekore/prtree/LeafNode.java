@@ -12,7 +12,7 @@ class LeafNode<T> extends NodeBase<T, T> {
 	return new SimpleMBR (converter.getMinX (t), converter.getMinY (t),
 			      converter.getMaxX (t), converter.getMaxY (t));
     }
-    
+
     @Override public MBR computeMBR (MBRConverter<T> converter) {
 	MBR ret = null;
 	for (int i = 0, s = size (); i < s; i++)
@@ -20,7 +20,7 @@ class LeafNode<T> extends NodeBase<T, T> {
 	return ret;
     }
 
-    public void expand (MBR mbr, MBRConverter<T> converter, 
+    public void expand (MBR mbr, MBRConverter<T> converter,
 			List<T> found, List<Node<T>> nodesToExpand) {
 	find (mbr, converter, found);
     }

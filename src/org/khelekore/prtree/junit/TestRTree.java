@@ -94,7 +94,7 @@ public class TestRTree {
 
     @Test
     public void testHeight () {
-	int numRects = 11;  // root and below it we have two leaf nodes 
+	int numRects = 11;  // root and below it we have two leaf nodes
 	List<Rectangle2D> rects = new ArrayList<Rectangle2D> (numRects);
 	for (int i = 0; i < numRects; i++) {
 	    rects.add (new Rectangle2D.Double (i, i, 10, 10));
@@ -116,13 +116,13 @@ public class TestRTree {
 	for (int i = 0; i < numRects; i++) {
 	    Rectangle2D r1 = new Rectangle2D.Double (i, i, 10, 10);
 	    Rectangle2D r2 = new Rectangle2D.Double (i, numRects - i, 10, 10);
-	    if (queryInside.intersects (r1, converter)) 
+	    if (queryInside.intersects (r1, converter))
 		shouldFindInside++;
-	    if (queryOutside.intersects (r1, converter)) 
+	    if (queryOutside.intersects (r1, converter))
 		shouldFindOutside++;
-	    if (queryInside.intersects (r2, converter)) 
+	    if (queryInside.intersects (r2, converter))
 		shouldFindInside++;
-	    if (queryOutside.intersects (r2, converter)) 
+	    if (queryOutside.intersects (r2, converter))
 		shouldFindOutside++;
 	    rects.add (r1);
 	    rects.add (r2);
@@ -135,13 +135,13 @@ public class TestRTree {
 	System.err.println ("loading tree");
 	tree.load (rects);
 	System.err.println ("tree loaded");
-	
+
 	int count = 0;
 	// dx = 10, each rect is 10 so 20 in total
- 	for (Rectangle2D r : tree.find (queryInside)) 
+ 	for (Rectangle2D r : tree.find (queryInside))
 	    count++;
 	assertEquals ("should find some rectangles", shouldFindInside, count);
-	
+
 	count = 0;
 	for (Rectangle2D r : tree.find (queryOutside))
 	    count++;
@@ -154,40 +154,40 @@ public class TestRTree {
 	return random.nextDouble () * RANGE - RANGE / 2;
     }
 
-    @Test 
+    @Test
     public void testRandom () {
 	System.err.println ("testRandom");
 	int numRects = 100000;
 	int numRounds = 100;
 
-	Random random = new Random (1234);  // same random every time	
+	Random random = new Random (1234);  // same random every time
 	for (int round = 0; round < numRounds; round++) {
-	    tree = new PRTree<Rectangle2D> (converter, 10);	    
+	    tree = new PRTree<Rectangle2D> (converter, 10);
 	    List<Rectangle2D> rects = new ArrayList<Rectangle2D> (numRects);
 	    for (int i = 0; i < numRects; i++) {
-		Rectangle2D r = 
-		    new Rectangle2D.Double (getRandomRectangleSize (random), 
+		Rectangle2D r =
+		    new Rectangle2D.Double (getRandomRectangleSize (random),
 					    getRandomRectangleSize (random),
 					    getRandomRectangleSize (random),
 					    getRandomRectangleSize (random));
 		rects.add (r);
 	    }
 	    tree.load (rects);
-	    double x1 = getRandomRectangleSize (random); 
+	    double x1 = getRandomRectangleSize (random);
 	    double y1 = getRandomRectangleSize (random);
-	    double x2 = getRandomRectangleSize (random); 
+	    double x2 = getRandomRectangleSize (random);
 	    double y2 = getRandomRectangleSize (random);
 	    MBR query = new SimpleMBR (Math.min (x1, x2), Math.min (y1, y2),
 				       Math.max (x1, x2), Math.min (y1, y2));
 
-	    int countSimple = 0; 
+	    int countSimple = 0;
 	    for (Rectangle2D r : rects) {
 		if (query.intersects (r, converter))
 		    countSimple++;
 	    }
 
 	    int countTree = 0;
-	    for (Rectangle2D r : tree.find (query)) 
+	    for (Rectangle2D r : tree.find (query))
 		countTree++;
 	    assertEquals (round + ": should find same number of rectangles",
 			  countSimple, countTree);
@@ -201,7 +201,7 @@ public class TestRTree {
 	List<Rectangle2D> rects = new ArrayList<Rectangle2D> (numRects);
 	for (int i = 0; i < numRects; i++)
 	    rects.add (new Rectangle2D.Double (i, i, 10, 10));
-	
+
 	System.out.println ("running speed test");
 	tree.load (rects);
 	testFindSpeedIterator ();
@@ -219,11 +219,11 @@ public class TestRTree {
 	long end = System.nanoTime ();
 	long diff = end - start;
 	System.out.println ("finding " + count + " took: " + (diff / 1000000) +
-			    " millis, average: " + (diff / numRounds) + 
+			    " millis, average: " + (diff / numRounds) +
 			    " nanos");
-	
+
     }
-    
+
     private void testFindSpeedArray () {
  	int count = 0;
 	int numRounds = 100000;
@@ -237,9 +237,9 @@ public class TestRTree {
 	long end = System.nanoTime ();
 	long diff = end - start;
 	System.out.println ("finding " + count + " took: " + (diff / 1000000) +
-			    " millis, average: " + (diff / numRounds) + 
+			    " millis, average: " + (diff / numRounds) +
 			    " nanos");
-	
+
     }
 
     public static void main (String args[]) {

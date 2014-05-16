@@ -8,7 +8,7 @@ class YMinNodeComparator<T> implements Comparator<Node<T>> {
     public YMinNodeComparator (MBRConverter<T> converter) {
 	this.converter = converter;
     }
-    
+
     public int compare (Node<T> n1, Node<T> n2) {
 	double d1 = n1.getMBR (converter).getMinY ();
 	double d2 = n2.getMBR (converter).getMinY ();

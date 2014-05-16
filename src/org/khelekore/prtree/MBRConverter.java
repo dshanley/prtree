@@ -1,6 +1,6 @@
 package org.khelekore.prtree;
 
-/** A class that given a T can tell the minimum and maximum 
+/** A class that given a T can tell the minimum and maximum
  *  ordinates for that object.
  * @param T the data type stored in the PRTree
  */
